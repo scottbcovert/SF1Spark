@@ -1,4 +1,33 @@
-<section data-ng-controller="HomeController">
+<div flex layout="row" data-ng-controller="HomeController as ul">
+ 
+    <!-- Container #3 Left -->
+    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left"
+class="md-whiteframe-z2">
+        <md-list>
+            <md-list-item ng-repeat="it in ul.users">
+                <md-button ng-click="ul.selectUser(it)"
+                           ng-class="{'selected' : it === ul.selected }">
+                    <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+                    {{it.name}}
+                </md-button>
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
+ 
+    <!-- Container #4 Right -->
+    <md-content flex id="content">
+        <!-- User details sample -->
+        <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
+        <h2>{{ul.selected.name}}</h2>
+        <p>{{ul.selected.content}}</p>
+ 
+        <md-button class="share" md-no-ink ng-click="ul.share($event)"
+                   aria-label="Share">
+            <md-icon md-svg-icon="share" ></md-icon>
+        </md-button>
+    </md-content>
+</div>
+<!--<section data-ng-controller="HomeController">
 	<div class="jumbotron text-center">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
@@ -91,4 +120,4 @@
 	</div>
 	<br>Enjoy &amp; Keep Us Updated,
 	<br>The MEAN.JS Team.
-</section>
+</section>-->
