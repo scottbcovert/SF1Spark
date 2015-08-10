@@ -139,6 +139,15 @@ module.exports = function(grunt) {
 			unit: {
 				configFile: 'karma.conf.js'
 			}
+		},
+		'copy-fonts': {
+		    main:{
+		        expand: true,
+		        flatten: true,
+		        src: ['public/modules/core/fonts/*'],
+		        dest: 'public/dist/',
+		        filter: 'isFile'
+		    }
 		}
 	});
 
@@ -170,7 +179,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin', 'copy-fonts']);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
