@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/sf1spark-test',
-	port: 3001,
+	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/sf1spark-test',
+	port: process.env.PORT || 3001,
 	app: {
 		title: 'SF1Spark - Test Environment'
 	},
