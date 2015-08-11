@@ -14,8 +14,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
          * @param avatarsService
          * @constructor
          */
- 
- 
+
         // Load all registered users
  
         usersService
@@ -32,8 +31,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         /**
          * Hide or Show the 'left' sideNav area
          */
-        function toggleUsersList() {
-            $mdSidenav('left').toggle();
+        function toggleSidenav() {
+            self.activeSidenav = !self.activeSidenav;
         }
  
         /**
@@ -42,7 +41,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
          */
         function selectUser ( user ) {
             self.selected = angular.isNumber(user) ? $scope.users[user] : user;
-            self.toggleList();
         }
  
         /**
@@ -80,14 +78,26 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
  
  
         }
+
+        function sideNavClass(){
+            if (self.activeSidenav){
+                return 'expandedSidenav';
+            }
+            else {
+                return '';
+            }
+        }
  
-        var self = this;
+        var activeSidenav = false,
+            self = this;
  
-        self.selected     = null;
-        self.users        = [ ];
-        self.selectUser   = selectUser;
-        self.toggleList   = toggleUsersList;
-        self.share        = share;
+        self.selected      = null;
+        self.users         = [ ];
+        self.selectUser    = selectUser;
+        self.toggleSidenav = toggleSidenav;
+        self.share         = share;
+        self.activeSidenav = activeSidenav;
+        self.sideNavClass  = sideNavClass;
  
     }
 ]);

@@ -22,6 +22,21 @@ md-toolbar h1 {
 
 /* Sidenav area */
 
+.sideNavButton {
+  min-width: 32px;
+}
+
+md-sidenav.md-locked-open {
+  width: 52px;
+  min-width: 52px;
+  max-width: 52px;
+}
+
+md-sidenav.expandedSidenav {
+  width: 230px;
+  min-width: 230px;
+}
+
 md-list .md-button {
   color: inherit;
   font-weight: 500;
@@ -29,7 +44,11 @@ md-list .md-button {
   width: 100%;
 }
   md-list .md-button.selected {
-    color: #03a9f4;
+    color: white;
+  }
+
+  md-list .md-button.selected:hover {
+    color: inherit;
   }
 
   md-sidenav  md-list {
@@ -46,7 +65,6 @@ md-list .md-button {
 #content  {
   padding-left: 40px;
   padding-right: 40px;
-  padding-top: 5px;
 }
 
 #content .md-button.share {
