@@ -1,5 +1,5 @@
 html, body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'quicksandbold', sans-serif;
   font-size:14px;
   height:100%;
   margin: 0px;
@@ -137,6 +137,26 @@ md-button.menuBtn > md-icon {
 }
 
 /* Utils */
+
+.md-button.md-fab md-icon{
+  fill: white;
+}
+
+md-fab-speed-dial.md-fab-bottom-right {
+    top: auto;
+    right: 20px;
+    bottom: 20px;
+    left: auto;
+    position: absolute;
+}
+
+md-fab-speed-dial.md-fab-bottom-left {
+    top: auto;
+    right: auto;
+    bottom: 20px;
+    left: 20px;
+    position: absolute;
+}
 
 .content-wrapper {
   position: relative;
