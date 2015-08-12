@@ -1,8 +1,8 @@
 'use strict';
  
 angular.module('core').controller('HomeController', ['$scope', 'Authentication',
-'usersService', '$mdSidenav', '$mdBottomSheet', '$log',
-    function($scope, Authentication, usersService, $mdSidenav, $mdBottomSheet, $log) {
+'usersService', '$mdMedia', '$mdSidenav', '$mdBottomSheet', '$log',
+    function($scope, Authentication, usersService, $mdMedia, $mdSidenav, $mdBottomSheet, $log) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
  
@@ -27,13 +27,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         // *********************************
         // Internal methods
         // *********************************
- 
-        /**
-         * Hide or Show the 'left' sideNav area
-         */
-        function toggleSidenav() {
-            self.activeSidenav = !self.activeSidenav;
-        }
  
         /**
          * Select the current avatars
@@ -79,24 +72,57 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
  
         }
 
+        /**
+         * Show the 'left' sideNav area
+         */
+        function openSidenav() {
+            if (!isLargeView()){
+                self.activeSidenav = true;
+            }
+        }
+
+        /**
+         * Show the 'left' sideNav area
+         */
+        function closeSidenav() {
+            if (!isLargeView()){
+                self.activeSidenav = false;
+            }
+        }
+
+        /**
+         * Determine CSS class for sidenav
+         */
         function sideNavClass(){
-            if (self.activeSidenav){
+            if (self.activeSidenav || isLargeView()){
                 return 'expandedSidenav';
             }
             else {
                 return '';
             }
         }
+
+        /**
+         * Determines if the current media has a large viewport
+         */
+        function isLargeView(){
+            if ($mdMedia('gt-md')){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
  
-        var activeSidenav = false,
-            self = this;
+        var self = this;
  
         self.selected      = null;
         self.users         = [ ];
         self.selectUser    = selectUser;
-        self.toggleSidenav = toggleSidenav;
+        self.openSidenav   = openSidenav;
+        self.closeSidenav  = closeSidenav;
         self.share         = share;
-        self.activeSidenav = activeSidenav;
+        self.isLargeView   = isLargeView;
         self.sideNavClass  = sideNavClass;
  
     }

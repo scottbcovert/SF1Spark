@@ -1,6 +1,6 @@
 <md-toolbar layout="row">
     <md-button class="sideNavButton" aria-label="Show Side Nav">
-    	<h1><md-icon md-svg-icon="flash"></md-icon><span ng-if="hc.activeSidenav" class="animate-if">Salesforce1 Spark</span></h1>
+    	<h1><md-icon md-svg-icon="flash"></md-icon><span ng-if="hc.activeSidenav || hc.isLargeView()" class="animate-if">Salesforce1 Spark</span></h1>
     </md-button>
 </md-toolbar>
 <md-divider></md-divider>
@@ -10,7 +10,7 @@
                    ng-class="{'selected' : it === hc.selected }"
                    aria-label="{{it.name}}">
             <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
-            <span ng-if="hc.activeSidenav" class="animate-if">{{it.name}}</span>
+            <span ng-if="hc.activeSidenav || hc.isLargeView()" class="animate-if">{{it.name}}</span>
         </md-button>
         <md-divider/>
     </md-list-item>

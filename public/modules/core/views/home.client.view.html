@@ -1,7 +1,7 @@
 <div flex layout="row" data-ng-controller="HomeController as hc">
 
     <!-- Container #2 SideNav -->
-    <md-sidenav data-ng-include="'/modules/core/views/sideNav.client.view.html'" layout="column" md-is-locked-open="true" md-component-id="left" class="md-whiteframe-z2 site-sidenav" ng-class="hc.sideNavClass()" ng-mouseenter="hc.toggleSidenav()" ng-mouseleave="hc.toggleSidenav()"></md-sidenav>
+    <md-sidenav data-ng-include="'/modules/core/views/sideNav.client.view.html'" layout="column" md-is-locked-open="true" md-component-id="left" class="md-whiteframe-z2 site-sidenav" ng-class="hc.sideNavClass()" ng-mouseenter="hc.openSidenav()" ng-mouseleave="hc.closeSidenav()"></md-sidenav>
     
     <!-- Container #3 Right -->
     <div flex layout="column">
