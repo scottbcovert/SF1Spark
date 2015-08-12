@@ -35,6 +35,7 @@ md-sidenav.md-locked-open {
 md-sidenav.expandedSidenav {
   width: 230px;
   min-width: 230px;
+  max-width: 230px;
 }
 
 md-list .md-button {
