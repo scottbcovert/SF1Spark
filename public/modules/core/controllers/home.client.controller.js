@@ -73,21 +73,17 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         }
 
         /**
-         * Show the 'left' sideNav area
+         * Activate the 'left' sideNav area
          */
-        function openSidenav() {
-            if (!isLargeView()){
-                self.activeSidenav = true;
-            }
+        function activateSidenav() {
+            self.activeSidenav = true;            
         }
 
         /**
-         * Show the 'left' sideNav area
+         * Deactivate the 'left' sideNav area
          */
-        function closeSidenav() {
-            if (!isLargeView()){
-                self.activeSidenav = false;
-            }
+        function deactivateSidenav() {
+            self.activeSidenav = false;            
         }
 
         /**
@@ -116,14 +112,14 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
  
         var self = this;
  
-        self.selected      = null;
-        self.users         = [ ];
-        self.selectUser    = selectUser;
-        self.openSidenav   = openSidenav;
-        self.closeSidenav  = closeSidenav;
-        self.share         = share;
-        self.isLargeView   = isLargeView;
-        self.sideNavClass  = sideNavClass;
+        self.selected           = null;
+        self.users              = [ ];
+        self.selectUser         = selectUser;
+        self.activateSidenav    = activateSidenav;
+        self.deactivateSidenav  = deactivateSidenav;
+        self.share              = share;
+        self.isLargeView        = isLargeView;
+        self.sideNavClass       = sideNavClass;
  
     }
 ]);

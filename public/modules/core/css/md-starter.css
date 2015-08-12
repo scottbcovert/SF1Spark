@@ -20,6 +20,22 @@ md-toolbar h1 {
   margin: auto;
 }
 
+  md-toolbar-tools .md-button.selected {
+    color: inherit;
+  }
+
+  md-toolbar-tools .md-button.selected md-icon {
+    fill: inherit;
+  }
+
+  md-toolbar-tools .md-button:hover {
+    color: inherit;
+  }
+
+  md-toolbar-tools .md-button:hover md-icon {
+    fill: inherit;
+  }
+
 /* Sidenav area */
 
 .sideNavButton {

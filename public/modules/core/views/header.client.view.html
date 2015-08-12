@@ -1,6 +1,17 @@
 <div data-ng-controller="HeaderController" flex>
-    <md-toolbar layout="row" class="site-header">
+    <md-toolbar hide-sm layout="row" class="site-header">
         <div class="md-toolbar-tools">{{hc.selected.name}} Sparks</div>
+    </md-toolbar>
+    <md-toolbar hide-gt-sm layout="row" layout-align="center center">    	
+		<div ng-repeat="it in hc.users">    
+		    <md-toolbar-tools>
+		        <md-button ng-click="hc.selectUser(it)"
+		                   ng-class="{'selected' : it === hc.selected }"
+		                   aria-label="{{it.name}}">
+		            <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+		        </md-button>
+		    </md-toolbar-tools>		    
+		</div>
     </md-toolbar>
 </div>
 <!--<div class="container" data-ng-controller="HeaderController">
