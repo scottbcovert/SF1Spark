@@ -11,9 +11,7 @@
 	    <!-- Container #5 Details -->
 	    <md-content flex id="content">
 	        <!-- User details sample -->
-	        <md-icon md-svg-icon="{{hc.selected.avatar}}" class="avatar"></md-icon>
-	        <h2>{{hc.selected.name}}</h2>
-	        <p>{{hc.selected.content}}</p>
+	        <div class="md-padding">{{hc.selected.content}}</div>
 	 
 	        <md-button class="share" md-no-ink ng-click="hc.share($event)"
 	                   aria-label="Share">

@@ -39,23 +39,35 @@ md-sidenav.expandedSidenav {
 }
 
 md-list .md-button {
-  color: inherit;
+  color: white;
   font-weight: 500;
   text-align: left;
   width: 100%;
 }
+
+md-list md-icon {
+  fill: white;
+}
+
   md-list .md-button.selected {
-    color: white;
+    color: inherit;
   }
 
-  md-list .md-button.selected:hover {
+  md-list .md-button.selected md-icon {
+    fill: inherit;
+  }
+
+  md-list .md-button:hover {
     color: inherit;
+  }
+
+  md-list .md-button:hover md-icon {
+    fill: inherit;
   }
 
   md-sidenav  md-list {
     padding: 0px 0px 8px 0px;
   }
-
 
 /* Primary content area */
 
@@ -123,18 +135,18 @@ md-toolbar h1 {
 
 .avatar {
   position: relative;
-  width: 128px;
+  /*width: 128px;
   height: 128px;
   border: 1px solid #ddd;
-  border-radius: 50%;
+  border-radius: 50%;*/
   display: inline-block;
   overflow: hidden;
   margin: 0px;
   vertical-align: middle;
-  zoom:0.70;
+  /*zoom:0.70;
   transform: translateZ(0);
   -webkit-transform: scale(0.70);
-  -moz-transform:scale(0.70);
+  -moz-transform:scale(0.70);*/
 }
 
 
