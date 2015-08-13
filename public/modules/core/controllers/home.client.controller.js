@@ -1,8 +1,8 @@
 'use strict';
  
 angular.module('core').controller('HomeController', ['$scope', 'Authentication',
-'usersService', '$mdMedia', '$mdSidenav', '$mdDialog', '$mdBottomSheet', '$log',
-    function($scope, Authentication, usersService, $mdMedia, $mdSidenav, $mdDialog, $mdBottomSheet, $log) {
+'usersService', '$mdMedia', '$mdSidenav', '$mdDialog', '$mdBottomSheet', '$window', '$log',
+    function($scope, Authentication, usersService, $mdMedia, $mdSidenav, $mdDialog, $mdBottomSheet, $window, $log) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
  
@@ -48,10 +48,10 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             function UserSheetController( $mdBottomSheet ) {
                 this.user = user;
                 this.items = [
-                    { name: 'Phone'       , icon: 'phone'       },
-                    { name: 'Twitter'     , icon: 'twitter'     },
-                    { name: 'Google+'     , icon: 'google_plus' },
-                    { name: 'Hangout'     , icon: 'hangouts'    }
+                    { name: 'Phone'       , icon: 'phone'           },
+                    { name: 'Twitter'     , icon: 'twitter_box'     },
+                    { name: 'Google+'     , icon: 'google_plus_box' },
+                    { name: 'Hangout'     , icon: 'hangouts'        }
                 ];
                 this.performAction = function(action) {
                     $mdBottomSheet.hide(action);
@@ -141,6 +141,20 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             $mdDialog.hide(answer);
           };
         };
+
+        /**
+         * Open New Window
+         */
+        function openWindow(url, title, w, h) {
+          if (w && h){
+            var left = (screen.width/2)-(w/2);
+            var top = (screen.height/2)-(h/2);
+            $window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);  
+          }
+          else{
+            $window.open(url);
+          }        
+        }
  
         var self = this;
  
@@ -152,10 +166,12 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         self.share              = share;
         self.isLargeView        = isLargeView;
         self.sideNavClass       = sideNavClass;
+        self.openWindow         = openWindow;
         self.actions = [
-            {name: "Mention on Twitter", icon: "twitter", direction: "left" },
-            {name: "Post to Facebook", icon: "facebook", direction: "left" },
-            {name: "Star on GitHub", icon: "github-circle", direction: "left" }
+            {name: "Mention on Twitter", icon: "twitter", direction: "left", windowURL: 'https://twitter.com/intent/tweet?hashtags=SalesforceLightning&original_referer=http%3A%2F%2Fsf1spark.com&ref_src=web&share_with_retweet=never&text=I%27m%20using%20%23SF1Spark%20to%20%23golightningfast%20-%20you%20should%20too!&url=http://sf1spark.com', windowWidth: 600, windowHeight: 250 },
+            {name: "Post to Facebook", icon: "facebook", direction: "left", windowURL: 'https://www.facebook.com/sharer/sharer.php?u=sf1spark.com', windowWidth: 600, windowHeight: 250 },
+            {name: "Share on Google+", icon: "google_plus", direction: "left", windowURL: 'https://plus.google.com/share?url=sf1spark.com', windowWidth: 600, windowHeight: 450 },
+            {name: "Star on GitHub", icon: "github-circle", direction: "left", windowURL: 'https://github.com/scottbcovert/SF1Spark', windowWidth: null, windowHeight: null }
         ];
         self.showActionDialog = showActionDialog;
  

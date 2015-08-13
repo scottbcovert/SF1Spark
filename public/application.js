@@ -18,9 +18,9 @@ angular.module(ApplicationConfiguration.applicationModuleName).config([
             .defaultIconSet('./assets/svg/avatars.svg', 128)
             .icon('menu'                                           , './assets/svg/menu.svg'                   , 24)
             .icon('share'                                          , './assets/svg/share.svg'                  , 24)
-            .icon('google_plus'                                    , './assets/svg/google_plus.svg'            , 512)
+            .icon('google_plus_box'                                , './assets/svg/google_plus_box.svg'        , 512)
             .icon('hangouts'                                       , './assets/svg/hangouts.svg'               , 512)
-            .icon('twitter'                                        , './assets/svg/twitter_box.svg'            , 512)
+            .icon('twitter_box'                                    , './assets/svg/twitter_box.svg'            , 512)
             .icon('phone'                                          , './assets/svg/phone.svg'                  , 512)
             .icon('flash'                                          , './assets/svg/flash.svg'                  , 24)
             .icon('personal_folder'                                , './assets/svg/personal_folder.svg'        , 24)
@@ -33,6 +33,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).config([
             .icon('heart-outline'                           , './assets/svg/heart-outline.svg'                 , 24)
             .icon('twitter'                                       , './assets/svg/twitter.svg'                 , 24)
             .icon('facebook'                                     , './assets/svg/facebook.svg'                 , 24)
+            .icon('google_plus'                                     , './assets/svg/google_plus.svg'           , 24)
     }
 ]);
 
