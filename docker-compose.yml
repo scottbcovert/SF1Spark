@@ -4,6 +4,10 @@ web:
    - db
   ports:
    - "3000:3000"
+   - "35729:35729"
+  volumes:
+   - "/Users/Scott/myMac/workspace/sf1spark/public:/home/mean/public"
+   - "/Users/Scott/myMac/workspace/sf1spark/app:/home/mean/app"
   environment: 
    NODE_ENV: development
 db:
