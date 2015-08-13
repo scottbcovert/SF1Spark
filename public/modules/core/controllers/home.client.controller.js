@@ -1,8 +1,8 @@
 'use strict';
  
 angular.module('core').controller('HomeController', ['$scope', 'Authentication',
-'usersService', '$mdMedia', '$mdSidenav', '$mdDialog', '$mdBottomSheet', '$window', '$log',
-    function($scope, Authentication, usersService, $mdMedia, $mdSidenav, $mdDialog, $mdBottomSheet, $window, $log) {
+'usersService', '$mdMedia', '$mdSidenav', '$mdDialog', '$window', '$log',
+    function($scope, Authentication, usersService, $mdMedia, $mdSidenav, $mdDialog, $window, $log) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
  
@@ -29,6 +29,43 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         // *********************************
  
         /**
+         * Builds out sample tile grids
+         */
+        function buildGridModel(tileTmpl){
+          var it, results = [ ];
+          for (var j=0; j<11; j++) {
+            it = angular.extend({},tileTmpl);
+            it.icon  = 'flash';//it.icon + (j+1);
+            it.title = it.title + (j+1);
+            it.span  = { row : 1, col : 1 };
+            switch(j+1) {
+              case 1:
+                it.background = "red";
+                it.span.row = it.span.col = 2;
+                break;
+              case 2: it.background = "green";         break;
+              case 3: it.background = "darkBlue";      break;
+              case 4:
+                it.background = "blue";
+                it.span.col = 2;
+                break;
+              case 5:
+                it.background = "yellow";
+                it.span.row = it.span.col = 2;
+                break;
+              case 6: it.background = "pink";          break;
+              case 7: it.background = "darkBlue";      break;
+              case 8: it.background = "purple";        break;
+              case 9: it.background = "deepBlue";      break;
+              case 10: it.background = "lightPurple";  break;
+              case 11: it.background = "yellow";       break;
+            }
+            results.push(it);
+          }
+          return results;
+        }
+
+        /**
          * Select the current avatars
          * @param menuId
          */
@@ -36,42 +73,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             self.selected = angular.isNumber(user) ? $scope.users[user] : user;
         }
  
-        /**
-         * Show the bottom sheet
-         */
-        function share($event) {
-            var user = self.selected;
- 
-            /**
-             * Bottom Sheet controller for the Avatar Actions
-             */
-            function UserSheetController( $mdBottomSheet ) {
-                this.user = user;
-                this.items = [
-                    { name: 'Phone'       , icon: 'phone'           },
-                    { name: 'Twitter'     , icon: 'twitter_box'     },
-                    { name: 'Google+'     , icon: 'google_plus_box' },
-                    { name: 'Hangout'     , icon: 'hangouts'        }
-                ];
-                this.performAction = function(action) {
-                    $mdBottomSheet.hide(action);
-                };
-            }
- 
-            $mdBottomSheet.show({
-                parent: angular.element(document.getElementById('content')),
-                templateUrl: 'modules/core/views/contactSheet.client.view.html',
-                controller: [ '$mdBottomSheet', UserSheetController],
-                controllerAs: 'vm',
-                bindToController : true,
-                targetEvent: $event
-            }).then(function(clickedItem) {
-                $log.debug( clickedItem.name + ' clicked!');
-            });
- 
- 
-        }
-
         /**
          * Activate the 'left' sideNav area
          */
@@ -163,10 +164,14 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         self.selectUser         = selectUser;
         self.activateSidenav    = activateSidenav;
         self.deactivateSidenav  = deactivateSidenav;
-        self.share              = share;
         self.isLargeView        = isLargeView;
         self.sideNavClass       = sideNavClass;
         self.openWindow         = openWindow;
+        self.tiles              = buildGridModel({
+            icon : "avatar:svg-",
+            title: "Random Icon #",
+            background: ""
+        });
         self.actions = [
             {name: "Mention on Twitter", icon: "twitter", direction: "left", windowURL: 'https://twitter.com/intent/tweet?hashtags=SalesforceLightning&original_referer=http%3A%2F%2Fsf1spark.com&ref_src=web&share_with_retweet=never&text=I%27m%20using%20%23SF1Spark%20to%20%23golightningfast%20-%20you%20should%20too!&url=http://sf1spark.com', windowWidth: 600, windowHeight: 250 },
             {name: "Post to Facebook", icon: "facebook", direction: "left", windowURL: 'https://www.facebook.com/sharer/sharer.php?u=sf1spark.com', windowWidth: 600, windowHeight: 250 },
