@@ -8,7 +8,7 @@
 		        Login
 		    </md-button>
 		    <span ng-if="hc.authentication.user && hc.authentication.user.providerData.photos.thumbnail">
-		        <img class="toolbar-user-image" src="{{hc.authentication.user.providerData.photos.thumbnail}}"/>
+		        <img class="toolbar-user-image" ng-src="{{hc.authentication.user.providerData.photos.thumbnail}}"/>
 		        <span ng-show="hc.isLargeView()">{{hc.authentication.user.displayName}}</span>
 		    </span>
 		    </md-button>
