@@ -34,6 +34,8 @@ angular.module(ApplicationConfiguration.applicationModuleName).config([
             .icon('twitter'                                       , './assets/svg/twitter.svg'                 , 24)
             .icon('facebook'                                     , './assets/svg/facebook.svg'                 , 24)
             .icon('google_plus'                                     , './assets/svg/google_plus.svg'           , 24)
+            .icon('login'                                                 , './assets/svg/login.svg'           , 24)
+            .icon('logout'                                               , './assets/svg/logout.svg'           , 24)
     }
 ]);
 

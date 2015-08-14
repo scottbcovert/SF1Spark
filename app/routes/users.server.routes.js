@@ -52,6 +52,16 @@ module.exports = function(app) {
 	app.route('/auth/github').get(passport.authenticate('github'));
 	app.route('/auth/github/callback').get(users.oauthCallback('github'));
 
+	// Setting the salesforce oauth routes
+	app.route('/auth/forcedotcom').get(passport.authenticate('forcedotcom', {
+		scope: [
+			'full',
+			'refresh_token',
+			'offline_access'
+		]
+	}));
+	app.route('/auth/forcedotcom/callback').get(users.oauthCallback('forcedotcom'));
+
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);
 };

@@ -20,6 +20,27 @@ md-toolbar h1 {
   margin: auto;
 }
 
+  .site-header .md-button {
+    background-color: #03a9f4;
+    color: white;
+  }
+
+  .site-header .md-button:hover {
+    color: inherit;
+    background-color: #eee;
+  }
+
+  .site-header .md-button:hover md-icon {
+    fill: #03a9f4;
+  }
+
+  .site-header .toolbar-user-image {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+
   md-toolbar-tools .md-button.selected {
     color: inherit;
   }
@@ -34,6 +55,10 @@ md-toolbar h1 {
 
   md-toolbar-tools .md-button:hover md-icon {
     fill: inherit;
+  }
+
+  md-toolbar-tools .md-button {
+    min-width: 66px;
   }
 
 /* Sidenav area */
@@ -134,6 +159,12 @@ md-button.menuBtn > md-icon {
   display: block;
   height: auto;
   max-width: 500px;
+}
+
+/* Floating Action Button Menu */
+
+a.mfb-component__button--child[data-mfb-label]:after {
+  top: 34%;
 }
 
 /* Tile grid area */

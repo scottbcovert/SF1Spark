@@ -6,7 +6,7 @@
 <md-divider/>
 <md-list class="sideNavList">
     <div ng-repeat="it in hc.users">
-        <md-list-item>
+        <md-list-item data-ng-if="!it.authRequired || hc.authentication.user">
             <md-button ng-click="hc.selectUser(it)"
                        ng-class="{'selected' : it === hc.selected }"
                        aria-label="{{it.name}}">
@@ -14,6 +14,6 @@
                 <span ng-if="hc.activeSidenav || hc.isLargeView()" class="animate-if md-padding">{{it.name}}</span>            
             </md-button>
         </md-list-item>
-        <md-divider/>
+        <md-divider data-ng-if="!it.authRequired || hc.authentication.user"/>
     </div>
 </md-list>

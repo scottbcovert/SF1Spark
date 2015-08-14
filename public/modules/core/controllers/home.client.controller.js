@@ -3,10 +3,7 @@
 angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 'usersService', '$mdMedia', '$mdSidenav', '$mdDialog', '$window', '$log',
     function($scope, Authentication, usersService, $mdMedia, $mdSidenav, $mdDialog, $window, $log) {
-        // This provides Authentication context.
-        $scope.authentication = Authentication;
- 
- 
+        
         /**
          * Main Controller for the Angular Material Starter App
          * @param $scope
@@ -21,7 +18,12 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             .loadAll()
             .then( function( users ) {
                 self.users    = [].concat(users);
-                self.selected = users[0];
+                if (self.authentication.user){
+                  self.selected = users[0];
+                }
+                else{
+                  self.selected = users[2];
+                }
             });
  
         // *********************************
@@ -158,7 +160,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         }
  
         var self = this;
- 
+
+        self.authentication     = Authentication;
         self.selected           = null;
         self.users              = [ ];
         self.selectUser         = selectUser;

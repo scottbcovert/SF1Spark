@@ -10,6 +10,7 @@ web:
    - "/Users/Scott/myMac/workspace/sf1spark/app:/home/mean/app"
   environment: 
    NODE_ENV: development
+  env_file: config/env/local.js
 db:
   image: mongo
   ports: 

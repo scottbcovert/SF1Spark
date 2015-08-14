@@ -1,74 +1,40 @@
 <div data-ng-controller="HeaderController" flex>
-    <md-toolbar hide-sm layout="row" class="site-header">
-        <div class="md-toolbar-tools">{{hc.selected.name}} Sparks</div>
+    <md-toolbar hide-sm class="site-header">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="md-padding">{{hc.selected.name}} Sparks</span>
+	    <span class="md-padding">
+		    <md-button ng-if="!hc.authentication.user" aria-label="Login Button" href="/auth/forcedotcom">
+		        <md-icon md-svg-icon="login"></md-icon>
+		        Login
+		    </md-button>
+		    <span ng-if="hc.authentication.user && hc.authentication.user.providerData.photos.thumbnail">
+		        <img class="toolbar-user-image" src="{{hc.authentication.user.providerData.photos.thumbnail}}"/>
+		        <span ng-show="hc.isLargeView()">{{hc.authentication.user.displayName}}</span>
+		    </span>
+		    </md-button>
+		    <md-button ng-if="hc.authentication.user" aria-label="Logout Button" href="/auth/signout">
+		        <md-icon md-svg-icon="logout"></md-icon>
+		        Logout
+		    </md-button>
+	    </span>
+	    </div>
     </md-toolbar>
-    <md-toolbar hide-gt-sm layout="row" layout-align="center center">    	
-		<div ng-repeat="it in hc.users">    
-		    <md-toolbar-tools>
-		        <md-button ng-click="hc.selectUser(it)"
-		                   ng-class="{'selected' : it === hc.selected }"
-		                   aria-label="{{it.name}}">
-		            <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
-		        </md-button>
-		    </md-toolbar-tools>		    
-		</div>
+    <md-toolbar hide-gt-sm layout="row" layout-align="center center">    			
+	    <md-toolbar-tools ng-repeat="it in hc.users">
+	        <md-button ng-click="hc.selectUser(it)"
+	                   ng-class="{'selected' : it === hc.selected }"
+	                   aria-label="{{it.name}}"
+	                   data-ng-if="!it.authRequired || hc.authentication.user">
+	            <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+	        </md-button>
+	    </md-toolbar-tools>		   
+		<md-toolbar-tools>
+			<md-button ng-if="!hc.authentication.user" aria-label="Login Button" href="/auth/forcedotcom">
+		        <md-icon md-svg-icon="login"></md-icon>
+		    </md-button>
+			<md-button ng-if="hc.authentication.user" aria-label="Logout Button" href="/auth/signout">
+		        <md-icon md-svg-icon="logout"></md-icon>
+		    </md-button>
+		</md-toolbar-tools>
     </md-toolbar>
 </div>
-<!--<div class="container" data-ng-controller="HeaderController">
-	<div class="navbar-header">
-		<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a href="/#!/" class="navbar-brand">SF1Spark</a>
-	</div>
-	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
-		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
-			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
-				<a ng-switch-when="dropdown" class="dropdown-toggle">
-					<span data-ng-bind="item.title"></span>
-					<b class="caret"></b>
-				</a>
-				<ul ng-switch-when="dropdown" class="dropdown-menu">
-					<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="subitem.shouldRender(authentication.user);" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
-						<a href="/#!/{{subitem.link}}" data-ng-bind="subitem.title"></a>
-					</li>
-				</ul>
-				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
-			<li ui-route="/signup" ng-class="{active: $uiRoute}">
-				<a href="/#!/signup">Sign Up</a>
-			</li>
-			<li class="divider-vertical"></li>
-			<li ui-route="/signin" ng-class="{active: $uiRoute}">
-				<a href="/#!/signin">Sign In</a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a href="/#!/settings/profile">Edit Profile</a>
-					</li>
-					<li>
-						<a href="/#!/settings/accounts">Manage Social Accounts</a>
-					</li>
-					<li data-ng-show="authentication.user.provider === 'local'">
-						<a href="/#!/settings/password">Change Password</a>
-					</li>
-					<li class="divider"></li>
-					<li>
-						<a href="/auth/signout">Signout</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</nav>
-</div>-->

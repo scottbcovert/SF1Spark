@@ -16,18 +16,22 @@ angular.module('core').service('usersService', ['$q',
         {
             name: 'Personal',
             avatar: 'personal_folder',
+            authRequired: true,
         },
         {
             name: 'Starred',
             avatar: 'starred_folder',
+            authRequired: true,
         },
         {
             name: 'Trending',
-            avatar: 'trending',            
+            avatar: 'trending',
+            authRequired: false,           
         },
         {
             name: 'Newest',
             avatar: 'new',
+            authRequired: false,
         }
     ];
  

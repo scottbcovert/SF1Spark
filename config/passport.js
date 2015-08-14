@@ -19,6 +19,10 @@ module.exports = function() {
 
 	// Deserialize sessions
 	passport.deserializeUser(function(id, done) {
+		if (id.indexOf('/')!==-1 || id.length === 18){
+			// Salesforce id; convert to valid mongoose ObjectId
+			id = 'force_' + id.split('/')[0];
+		}
 		User.findOne({
 			_id: id
 		}, '-salt -password', function(err, user) {
