@@ -1,6 +1,12 @@
 FROM node:0.10
 
-MAINTAINER Matthias Luebken, matthias@catalyst-zero.com
+MAINTAINER Scott Covert, scott.covert@tython.co
+
+# Update aptitude with new repo
+RUN apt-get update
+
+# Install git
+RUN apt-get install -y git
 
 WORKDIR /home/mean
 
