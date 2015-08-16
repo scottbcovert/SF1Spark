@@ -1,0 +1,12 @@
+target
+/target
+aura.log
+
+#Ignore .DS_Store Files
+.DS_Store
+
+#Ignore mm.log File
+mm.log
+
+#Ignore Sublime Project Files
+*.sublime*

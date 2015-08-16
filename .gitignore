@@ -72,3 +72,7 @@ mongod
 *.ntvs*
 *.njsproj
 *.sln
+
+# Make exceptions for Aura app template folders/files
+# =========
+!public/aura_template/*
