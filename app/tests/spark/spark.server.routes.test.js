@@ -54,6 +54,7 @@ describe('Spark CRUD tests', function() {
 			user2.save(function() {
 				spark = {
 					name: 'Spark Name',
+
 					repositoryUrl: 'https://github.com/test/test.git',
 					description: 'Test',
 					owner: user
@@ -131,6 +132,31 @@ describe('Spark CRUD tests', function() {
 					.end(function(sparkSaveErr, sparkSaveRes) {
 						// Set message assertion
 						(sparkSaveRes.body.message).should.match('Please give a name to your new Spark');
+						
+						// Handle Spark save error
+						done(sparkSaveErr);
+					});
+			});
+	});
+
+	it('should not be able to save Spark instance if no application name is provided', function(done) {
+		// Invalidate name field
+		spark.application = '';
+
+		agent.post('/auth/signin')
+			.send(credentials)
+			.expect(200)
+			.end(function(signinErr, signinRes) {
+				// Handle signin error
+				if (signinErr) done(signinErr);
+
+				// Save a new Spark
+				agent.post('/sparks')
+					.send(spark)
+					.expect(400)
+					.end(function(sparkSaveErr, sparkSaveRes) {
+						// Set message assertion
+						(sparkSaveRes.body.message).should.match('Please enter the application name for this Spark');
 						
 						// Handle Spark save error
 						done(sparkSaveErr);

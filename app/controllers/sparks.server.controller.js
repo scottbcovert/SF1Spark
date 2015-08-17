@@ -6,7 +6,8 @@
 var mongoose = require('mongoose'),
     _ = require('lodash'),
     errorHandler = require('./errors.server.controller'),
-	Spark = mongoose.model('Spark'),;
+	Spark = mongoose.model('Spark'),
+	shell = require('shelljs');
 
 /**
  * Create a Spark
@@ -21,6 +22,25 @@ exports.create = function(req, res) {
 				message: errorHAndler.getErrorMessage(err)
 			});
 		} else {
+			// Use shelljs & dokku to upload Spark codebase as hosted Aura app
+			shell.cd('../../');
+			shell.mkdir(spark.name);
+			shell.cp('-Rf','aura_template/',spark.name);
+			shell.cd(spark.name);
+			shell.sed('-i', 'REPOSITORY_URL', spark.repositoryUrl.replace(/\\/g,'\\/').replace(/\./g,'\\.'), 'Dockerfile');
+			shell.sed('-i', 'SPARK_NAME', spark.name, 'Dockerfile');
+			shell.sed('-i', '/SPARK_NAME/', spark.name, 'src/main/webapp/index.jsp');
+			shell.sed('-i', '/APPLICATION_NAME/', spark.application, 'src/main/webapp/index.jsp');
+			shell.exec('git init');
+			shell.exec('git add .');
+			shell.exec('git commit -a -m \'Initial commit for Spark: ' + spark.name + '\'');
+			shell.exec('git remote add ' + spark.name + ' dokku@sf1spark.com:' + spark.name);
+			shell.exec('git push -f ' + spark.name + ' master', function(code, output) {
+			  console.log('Exit code:', code);
+			  console.log('Program output:', output);
+			  shell.cd('..');
+			  shell.rm('-Rf',spark.name);
+			});
 			res.jsonp(spark);
 		}
 	});

@@ -18,6 +18,6 @@ loading..
 %>
 
 <!-- load the app in a fullscreen iframe instead of redirecting it -->
-<iframe src="/ttt/tictactoe.app" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
+<iframe src="/SPARK_NAME/APPLICATION_NAME.app" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
 </body>
 </html>

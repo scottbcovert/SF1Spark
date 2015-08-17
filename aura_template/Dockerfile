@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get install -y git
 RUN mkdir --parents /usr/src/app
 ADD . /usr/src/app
-RUN git clone https://github.com/scottbcovert/ttt.git /usr/src/app/src/main/webapp/WEB-INF/components/ttt
+RUN git clone REPOSITORY_URL /usr/src/app/src/main/webapp/WEB-INF/components/SPARK_NAME
 WORKDIR /usr/src/app
 RUN mvn clean install
 EXPOSE 8080

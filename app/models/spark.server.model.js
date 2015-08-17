@@ -16,6 +16,11 @@ var SparkSchema = new Schema({
 		required: 'Please give a name to your new Spark',
 		trim: true
 	},
+	application: {
+		type: String,
+		required: 'Please enter the application name for this Spark',
+		trim: true
+	}
 	repositoryUrl: {
 		type: String,
 		required: 'Please specify the repository url for your Spark\'s codebase',

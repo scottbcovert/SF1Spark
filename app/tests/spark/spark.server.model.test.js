@@ -30,6 +30,7 @@ describe('Spark Model Unit Tests:', function() {
 		user.save(function() { 
 			spark = new Spark({
 				name: 'Spark Name',
+				application: 'App'
 				repositoryUrl: 'https://github.com/test/test.git',
 				description: 'Test',
 				owner: user
@@ -37,6 +38,7 @@ describe('Spark Model Unit Tests:', function() {
 
 			spark2 = new Spark({
 				name: 'Spark Name',
+				application: 'App',
 				repositoryUrl: 'https://github.com/test/test.git',
 				description: 'Test',
 				owner: user
@@ -80,6 +82,15 @@ describe('Spark Model Unit Tests:', function() {
 
 		it('should get an error when trying to save without a name', function(done) { 
 			spark.name = '';
+
+			return spark.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
+
+		it('should get an error when trying to save without an application name', function(done) { 
+			spark.application = '';
 
 			return spark.save(function(err) {
 				should.exist(err);

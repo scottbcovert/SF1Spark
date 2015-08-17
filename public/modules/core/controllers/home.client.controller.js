@@ -119,14 +119,14 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         function showActionDialog($event) {
             $mdDialog.show({
               controller: DialogController,
-              template: '<md-dialog aria-label="Form"> <md-content class="md-padding"> <form name="sparkForm"> <div layout layout-sm="column"> <md-input-container flex> <label>Spark Name</label> <input ng-model="spark.name"> </md-input-container> <md-input-container flex> <label>Repository URL</label> <input ng-model="spark.gitURL"> </md-input-container> </div> <md-input-container flex> <label>Description</label> <textarea ng-model="spark.description" columns="1" md-maxlength="150"></textarea> </md-input-container> </form> </md-content> <div class="md-actions" layout="row"> <span flex></span> <md-button ng-click="answer(\'not useful\')"> Cancel </md-button> <md-button ng-click="answer(\'useful\')" class="md-primary"> Save </md-button> </div></md-dialog>',
+              template: '<md-dialog aria-label="Form"> <md-content class="md-padding"> <form name="sparkForm"> <div layout layout-sm="column"> <md-input-container flex> <label>Spark Name</label> <input ng-model="spark.name"> </md-input-container> <md-input-container flex> <label>Application</label> <input ng-model="spark.application"> </md-input-container> </div> <md-input-container flex> <label>Repository URL</label> <input ng-model="spark.repositoryUrl"> </md-input-container> <md-input-container flex> <label>Description</label> <textarea ng-model="spark.description" columns="1" md-maxlength="150"></textarea> </md-input-container> </form> </md-content> <div class="md-actions" layout="row"> <span flex></span> <md-button ng-click="cancel()"> Cancel </md-button> <md-button ng-click="save()" class="md-primary"> Save </md-button> </div></md-dialog>',
               targetEvent: $event,
               clickOutsideToClose: true
             })
-            .then(function(answer) {
-              $scope.alert = 'You said the information was "' + answer + '".';
+            .then(function() {
+              // Saving Spark
             }, function() {
-              $scope.alert = 'You cancelled the dialog.';
+              // Cancelled
             });
         };
 
@@ -134,14 +134,13 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
          * Dialog Controller
          */
         function DialogController($scope, $mdDialog) {
-          $scope.hide = function() {
-            $mdDialog.hide();
-          };
+          
           $scope.cancel = function() {
             $mdDialog.cancel();
           };
-          $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
+
+          $scope.save = function() {
+            $mdDialog.hide();
           };
         };
 
