@@ -107,7 +107,7 @@ exports.list = function(req, res) {
 		Spark.find().sort('-created').exec(function(err, sparks) {
 			if (err) {
 				return res.status(400).send({
-					message: errorHandler.getErrorMessage(err);
+					message: errorHandler.getErrorMessage(err)
 				});
 			} else {
 				res.jsonp(sparks);
