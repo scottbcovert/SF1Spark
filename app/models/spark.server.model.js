@@ -43,7 +43,7 @@ var SparkSchema = new Schema({
 });
 
 SparkSchema.pre('save', function(next){
-  now = new Date();
+  var now = new Date();
   this.updated = now;
   if ( !this.created ) {
     this.created = now;

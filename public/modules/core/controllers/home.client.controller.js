@@ -187,17 +187,17 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         self.sideNavClass       = sideNavClass;
         self.openWindow         = openWindow;
         self.tiles              = buildGridModel({
-            icon : "avatar:svg-",
-            title: "Random Icon #",
-            background: ""
-        });
-        self.actions = [
-            {name: "Mention on Twitter", icon: "twitter", direction: "left", windowURL: 'https://twitter.com/intent/tweet?hashtags=SalesforceLightning&original_referer=http%3A%2F%2Fsf1spark.com&ref_src=web&share_with_retweet=never&text=I%27m%20using%20%23SF1Spark%20to%20%23golightningfast%20-%20you%20should%20too!&url=http://sf1spark.com', windowWidth: 600, windowHeight: 250 },
-            {name: "Post to Facebook", icon: "facebook", direction: "left", windowURL: 'https://www.facebook.com/sharer/sharer.php?u=sf1spark.com', windowWidth: 600, windowHeight: 250 },
-            {name: "Share on Google+", icon: "google_plus", direction: "left", windowURL: 'https://plus.google.com/share?url=sf1spark.com', windowWidth: 600, windowHeight: 450 },
-            {name: "Star on GitHub", icon: "github-circle", direction: "left", windowURL: 'https://github.com/scottbcovert/SF1Spark', windowWidth: null, windowHeight: null }
-        ];
-        self.sparkDialog = sparkDialog;
+                                      icon : "avatar:svg-",
+                                      title: "Random Icon #",
+                                      background: ""
+                                  });
+        self.actions            = [
+                                      {name: "Mention on Twitter", icon: "twitter", direction: "left", windowURL: 'https://twitter.com/intent/tweet?hashtags=SalesforceLightning&original_referer=http%3A%2F%2Fsf1spark.com&ref_src=web&share_with_retweet=never&text=I%27m%20using%20%23SF1Spark%20to%20%23golightningfast%20-%20you%20should%20too!&url=http://sf1spark.com', windowWidth: 600, windowHeight: 250 },
+                                      {name: "Post to Facebook", icon: "facebook", direction: "left", windowURL: 'https://www.facebook.com/sharer/sharer.php?u=sf1spark.com', windowWidth: 600, windowHeight: 250 },
+                                      {name: "Share on Google+", icon: "google_plus", direction: "left", windowURL: 'https://plus.google.com/share?url=sf1spark.com', windowWidth: 600, windowHeight: 450 },
+                                      {name: "Star on GitHub", icon: "github-circle", direction: "left", windowURL: 'https://github.com/scottbcovert/SF1Spark', windowWidth: null, windowHeight: null }
+                                  ];
+        self.sparkDialog        = sparkDialog;
  
     }
 ]);

@@ -8,6 +8,12 @@ RUN apt-get update
 # Install git
 RUN apt-get install -y git
 
+# Setup SSH Key
+ADD id_rsa /root/.ssh/id_rsa
+RUN chmod 700 /root/.ssh/id_rsa
+RUN echo "Host sf1spark.com\n\tIdentityFile \"~/.ssh/id_rsa\"" >> /root/.ssh/config
+RUN ssh-keyscan -t rsa sf1spark.com > /root/.ssh/known_hosts
+
 WORKDIR /home/mean
 
 # Install Mean.JS Prerequisites

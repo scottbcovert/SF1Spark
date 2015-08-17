@@ -73,6 +73,10 @@ mongod
 *.njsproj
 *.sln
 
+# SSH Keys
+# =========
+id_rsa*
+
 # Make exceptions for Aura app template folders/files
 # =========
 !aura_template/*

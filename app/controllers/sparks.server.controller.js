@@ -19,28 +19,29 @@ exports.create = function(req, res) {
 	spark.save(function(err) {
 		if (err) {
 			return res.status(400).send({
-				message: errorHAndler.getErrorMessage(err)
+				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
 			// Use shelljs & dokku to upload Spark codebase as hosted Aura app
-			shell.cd('../../');
 			shell.mkdir(spark.name);
 			shell.cp('-Rf','aura_template/',spark.name);
 			shell.cd(spark.name);
-			shell.sed('-i', 'REPOSITORY_URL', spark.repositoryUrl.replace(/\\/g,'\\/').replace(/\./g,'\\.'), 'Dockerfile');
+			shell.sed('-i', 'REPOSITORY_URL', spark.repositoryUrl, 'Dockerfile');
 			shell.sed('-i', 'SPARK_NAME', spark.name, 'Dockerfile');
-			shell.sed('-i', '/SPARK_NAME/', spark.name, 'src/main/webapp/index.jsp');
-			shell.sed('-i', '/APPLICATION_NAME/', spark.application, 'src/main/webapp/index.jsp');
+			shell.sed('-i', 'SPARK_NAME', spark.name, 'src/main/webapp/index.jsp');
+			shell.sed('-i', 'APPLICATION_NAME', spark.application, 'src/main/webapp/index.jsp');
 			shell.exec('git init');
+			shell.exec('git config user.name \'' + spark.owner.displayName + '\'');
+			shell.exec('git config user.email \'' + spark.owner.email + '\'');
 			shell.exec('git add .');
 			shell.exec('git commit -a -m \'Initial commit for Spark: ' + spark.name + '\'');
 			shell.exec('git remote add ' + spark.name + ' dokku@sf1spark.com:' + spark.name);
-			shell.exec('git push -f ' + spark.name + ' master', function(code, output) {
+			shell.exec('git push -f ' + spark.name + ' master', {async: true, silent: true}, function(code, output) {
 			  console.log('Exit code:', code);
 			  console.log('Program output:', output);
-			  shell.cd('..');
 			  shell.rm('-Rf',spark.name);
 			});
+			shell.cd('..');
 			res.jsonp(spark);
 		}
 	});
