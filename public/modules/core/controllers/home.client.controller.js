@@ -114,9 +114,11 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         }
 
         /**
-         * Action Dialog
+         * Spark Dialog
          */
-        function showActionDialog($event) {
+        function sparkDialog($event) {
+          // Must be logged in to create Sparks
+          if (self.authentication.user){
             $mdDialog.show({
               controller: DialogController,
               template: '<md-dialog aria-label="Form"> <md-content class="md-padding"> <form name="sparkForm"> <div layout layout-sm="column"> <md-input-container flex> <label>Spark Name</label> <input ng-model="spark.name"> </md-input-container> <md-input-container flex> <label>Application</label> <input ng-model="spark.application"> </md-input-container> </div> <md-input-container flex> <label>Repository URL</label> <input ng-model="spark.repositoryUrl"> </md-input-container> <md-input-container flex> <label>Description</label> <textarea ng-model="spark.description" columns="1" md-maxlength="150"></textarea> </md-input-container> </form> </md-content> <div class="md-actions" layout="row"> <span flex></span> <md-button ng-click="cancel()"> Cancel </md-button> <md-button ng-click="save()" class="md-primary"> Save </md-button> </div></md-dialog>',
@@ -128,6 +130,21 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             }, function() {
               // Cancelled
             });
+          }
+          else{
+            // Ask user to log in
+            var loginRequiredAlert = $mdDialog.alert()
+              .title('Oops!')
+              .content('You must be logged in to create new Sparks :-)')
+              .clickOutsideToClose(true)
+              .ok('Close');
+
+            $mdDialog
+              .show( loginRequiredAlert )
+              .finally(function() {
+                loginRequiredAlert = undefined;
+              });
+          }
         };
 
         /**
@@ -180,7 +197,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             {name: "Share on Google+", icon: "google_plus", direction: "left", windowURL: 'https://plus.google.com/share?url=sf1spark.com', windowWidth: 600, windowHeight: 450 },
             {name: "Star on GitHub", icon: "github-circle", direction: "left", windowURL: 'https://github.com/scottbcovert/SF1Spark', windowWidth: null, windowHeight: null }
         ];
-        self.showActionDialog = showActionDialog;
+        self.sparkDialog = sparkDialog;
  
     }
 ]);

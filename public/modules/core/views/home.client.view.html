@@ -16,7 +16,7 @@
 	        <div data-ng-include="'/modules/core/views/tileGrid.client.view.html'" class="gridListdemoDynamicTiles"></div>
 	    
 	        <!-- Floating Action Button Menu -->
-	        <mfb-menu main-action="hc.showActionDialog($event)" position="br" effect="slidein" label="New Spark" active-icon="flash" resting-icon="add" toggling-method="hover" template-url="modules/core/views/mfb-menu.client.view.html">
+	        <mfb-menu main-action="hc.sparkDialog($event)" position="br" effect="slidein" label="New Spark" active-icon="flash" resting-icon="add" toggling-method="hover" template-url="modules/core/views/mfb-menu.client.view.html">
 	        	<mfb-button template-url="modules/core/views/mfb-button.client.view.html" ng-repeat="action in hc.actions" label="{{action.name}}" icon="{{action.icon}}" ng-click="hc.openWindow(action.windowURL,action.name,action.windowWidth,action.windowHeight)" />
 	        </mfb-menu>
 	    
