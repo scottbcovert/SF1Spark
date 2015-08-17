@@ -75,4 +75,4 @@ mongod
 
 # Make exceptions for Aura app template folders/files
 # =========
-!public/aura_template/*
+!aura_template/*
