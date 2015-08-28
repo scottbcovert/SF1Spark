@@ -42,6 +42,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
                   it.icon  = 'flash';
                   it.title = sparks[j].name;
                   it.span  = { row : 1, col : 1 };
+                  it.description = sparks[j].description;
                   switch(j+1) {
                     case 1:
                       it.background = "red";
