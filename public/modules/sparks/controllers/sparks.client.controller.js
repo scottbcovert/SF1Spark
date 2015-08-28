@@ -6,6 +6,21 @@ angular.module('sparks').controller('SparksController', ['$scope', 'Authenticati
 		/**
          * Spark Dialog
          */
+
+        var loginRequiredAlert = $mdDialog.alert()
+              .title('Oops!')
+              .content('You must be logged in to create new Sparks :-)')
+              .clickOutsideToClose(true)
+              .ok('Close');
+        
+        var saveErrorAlert = function(errorMessage) {
+            return $mdDialog.alert()
+              .title('Oops!')
+              .content(errorMessage)
+              .clickOutsideToClose(true)
+              .ok('Close');
+        };
+
         function sparkDialog($event) {
           // Must be logged in to create Sparks
           if (self.authentication.user){
@@ -24,17 +39,9 @@ angular.module('sparks').controller('SparksController', ['$scope', 'Authenticati
           }
           else{
             // Ask user to log in
-            var loginRequiredAlert = $mdDialog.alert()
-              .title('Oops!')
-              .content('You must be logged in to create new Sparks :-)')
-              .clickOutsideToClose(true)
-              .ok('Close');
-
+            
             $mdDialog
-              .show( loginRequiredAlert )
-              .finally(function() {
-                loginRequiredAlert = undefined;
-              });
+              .show( loginRequiredAlert );
           }
         };
 
@@ -53,6 +60,8 @@ angular.module('sparks').controller('SparksController', ['$scope', 'Authenticati
             	// Success
             }, function(errorResponse) {
             	// Error
+              $mdDialog
+                .show( saveErrorAlert(errorResponse.data.message) );
             });
           };
         };
