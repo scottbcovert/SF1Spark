@@ -8,11 +8,11 @@ RUN apt-get update
 # Install git
 RUN apt-get install -y git
 
-# Setup SSH Key
-ADD id_rsa /root/.ssh/id_rsa
-RUN chmod 700 /root/.ssh/id_rsa
-RUN echo "Host sf1spark.com\n\tIdentityFile \"~/.ssh/id_rsa\"" >> /root/.ssh/config
-RUN ssh-keyscan -t rsa sf1spark.com > /root/.ssh/known_hosts
+# Setup SSH Key (Local Dev Only)
+# ADD id_rsa /root/.ssh/id_rsa
+# RUN chmod 700 /root/.ssh/id_rsa
+# RUN echo "Host sf1spark.com\n\tIdentityFile \"~/.ssh/id_rsa\"" >> /root/.ssh/config
+# RUN ssh-keyscan -t rsa sf1spark.com > /root/.ssh/known_hosts
 
 WORKDIR /home/mean
 
@@ -32,8 +32,8 @@ RUN bower install --config.interactive=false --allow-root
 # Make everything available for start
 ADD . /home/mean
 
-# currently only works for development
-ENV NODE_ENV development
+# Set NODE_ENV (Change to development for local dev)
+ENV NODE_ENV production
 
 # Port 3000 for server
 # Port 35729 for livereload
