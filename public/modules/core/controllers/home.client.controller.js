@@ -43,6 +43,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
                   it.title = sparks[j].name;
                   it.span  = { row : 1, col : 1 };
                   it.description = sparks[j].description;
+                  it.sparkUrl = 'http://' + sparks[j].name + '.sf1spark.com';
                   switch(j+1) {
                     case 1:
                       it.background = "red";
