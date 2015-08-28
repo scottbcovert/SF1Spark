@@ -6,11 +6,11 @@ module.exports = function(app) {
 
 	// Sparkss Routes
 	app.route('/sparks')
-		.get(users.requiresLogin, sparks.list)
+		.get(sparks.list)
 		.post(users.requiresLogin, sparks.create);
 
 	app.route('/sparks/:sparkId')
-		.get(sparks.hasAuthorization, sparks.read)
+		.get(sparks.read)
 		.put(users.requiresLogin, sparks.hasAuthorization, sparks.update)
 		.delete(users.requiresLogin, sparks.hasAuthorization, sparks.delete);
 

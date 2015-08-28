@@ -1,8 +1,8 @@
 'use strict';
  
 angular.module('core').controller('HomeController', ['$scope', 'Authentication',
-'usersService', '$mdMedia', '$mdSidenav', '$mdDialog', '$window', '$log',
-    function($scope, Authentication, usersService, $mdMedia, $mdSidenav, $mdDialog, $window, $log) {
+'usersService', 'Sparks', '$mdMedia', '$mdSidenav', '$mdDialog', '$window', '$log',
+    function($scope, Authentication, usersService, Sparks, $mdMedia, $mdSidenav, $mdDialog, $window, $log) {
         
         /**
          * Main Controller for the Angular Material Starter App
@@ -31,40 +31,45 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         // *********************************
  
         /**
-         * Builds out sample tile grids
+         * Builds out spark tile grid
          */
-        function buildGridModel(tileTmpl){
-          var it, results = [ ];
-          for (var j=0; j<11; j++) {
-            it = angular.extend({},tileTmpl);
-            it.icon  = 'flash';//it.icon + (j+1);
-            it.title = it.title + (j+1);
-            it.span  = { row : 1, col : 1 };
-            switch(j+1) {
-              case 1:
-                it.background = "red";
-                it.span.row = it.span.col = 2;
-                break;
-              case 2: it.background = "green";         break;
-              case 3: it.background = "darkBlue";      break;
-              case 4:
-                it.background = "blue";
-                it.span.col = 2;
-                break;
-              case 5:
-                it.background = "yellow";
-                it.span.row = it.span.col = 2;
-                break;
-              case 6: it.background = "pink";          break;
-              case 7: it.background = "darkBlue";      break;
-              case 8: it.background = "purple";        break;
-              case 9: it.background = "deepBlue";      break;
-              case 10: it.background = "lightPurple";  break;
-              case 11: it.background = "yellow";       break;
-            }
-            results.push(it);
-          }
-          return results;
+        function buildSparkGrid(sparkTmpl){
+          var it,
+              results = [ ];
+              return Sparks.query({query: null}, function (sparks) {
+                for (var j=0; j<sparks.length; j++) {
+                  it = angular.extend({},sparkTmpl);
+                  it.icon  = 'flash';
+                  it.title = sparks[j].name;
+                  it.span  = { row : 1, col : 1 };
+                  switch(j+1) {
+                    case 1:
+                      it.background = "red";
+                      it.span.row = it.span.col = 2;
+                      break;
+                    case 2: it.background = "green";         break;
+                    case 3: it.background = "darkBlue";      break;
+                    case 4:
+                      it.background = "blue";
+                      it.span.col = 2;
+                      break;
+                    case 5:
+                      it.background = "yellow";
+                      it.span.row = it.span.col = 2;
+                      break;
+                    case 6: it.background = "pink";          break;
+                    case 7: it.background = "darkBlue";      break;
+                    case 8: it.background = "purple";        break;
+                    case 9: it.background = "deepBlue";      break;
+                    case 10: it.background = "lightPurple";  break;
+                    case 11: it.background = "yellow";       break;
+                  }
+                  results.push(it);
+                }
+                self.tiles = results;
+              });
+          
+              
         }
 
         /**
@@ -186,11 +191,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         self.isLargeView        = isLargeView;
         self.sideNavClass       = sideNavClass;
         self.openWindow         = openWindow;
-        self.tiles              = buildGridModel({
-                                      icon : "avatar:svg-",
-                                      title: "Random Icon #",
-                                      background: ""
-                                  });
         self.actions            = [
                                       {name: "Mention on Twitter", icon: "twitter", direction: "left", windowURL: 'https://twitter.com/intent/tweet?hashtags=SalesforceLightning&original_referer=http%3A%2F%2Fsf1spark.com&ref_src=web&share_with_retweet=never&text=I%27m%20using%20%23SF1Spark%20to%20%23golightningfast%20-%20you%20should%20too!&url=http://sf1spark.com', windowWidth: 600, windowHeight: 250 },
                                       {name: "Post to Facebook", icon: "facebook", direction: "left", windowURL: 'https://www.facebook.com/sharer/sharer.php?u=sf1spark.com', windowWidth: 600, windowHeight: 250 },
@@ -198,6 +198,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
                                       {name: "Star on GitHub", icon: "github-circle", direction: "left", windowURL: 'https://github.com/scottbcovert/SF1Spark', windowWidth: null, windowHeight: null }
                                   ];
         self.sparkDialog        = sparkDialog;
+        buildSparkGrid({});
+        
  
     }
 ]);
