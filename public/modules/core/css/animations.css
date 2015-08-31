@@ -1,5 +1,7 @@
 .animate-if.ng-enter, .animate-if.ng-leave {
   -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
   transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 }
 
@@ -15,5 +17,7 @@
 
 md-sidenav {
   -webkit-transition:all linear 0.25s;
+  -moz-transition:all linear 0.25s;
+  -o-transition:all linear 0.25s;
   transition:all linear 0.25s;
 }

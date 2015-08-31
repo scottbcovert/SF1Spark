@@ -37,7 +37,7 @@ angular.module('sparks').controller('SparksController', ['$scope', 'Authenticati
             $mdDialog
               .show( errorAlert('You must be logged in to create new Sparks :-)') );
           }
-        };
+        }
 
         /**
          * Dialog Controller
@@ -58,7 +58,7 @@ angular.module('sparks').controller('SparksController', ['$scope', 'Authenticati
                 .show( errorAlert(errorResponse.data.message) );
             });
           };
-        };
+        }
 
         var self = this;
         self.authentication     = Authentication;

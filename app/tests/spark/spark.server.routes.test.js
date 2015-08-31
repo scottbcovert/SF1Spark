@@ -11,7 +11,7 @@ var should = require('should'),
 /**
  * Globals
  */
-var credentials, user, spark;
+var credentials, credentials2, user, user2, spark;
 
 /**
  * Spark routes tests

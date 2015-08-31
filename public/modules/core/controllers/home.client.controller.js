@@ -46,25 +46,25 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
                   it.sparkUrl = 'http://' + sparks[j].name + '.sf1spark.com';
                   switch(j+1) {
                     case 1:
-                      it.background = "red";
+                      it.background = 'red';
                       it.span.row = it.span.col = 2;
                       break;
-                    case 2: it.background = "green";         break;
-                    case 3: it.background = "darkBlue";      break;
+                    case 2: it.background = 'green';         break;
+                    case 3: it.background = 'darkBlue';      break;
                     case 4:
-                      it.background = "blue";
+                      it.background = 'blue';
                       it.span.col = 2;
                       break;
                     case 5:
-                      it.background = "yellow";
+                      it.background = 'yellow';
                       it.span.row = it.span.col = 2;
                       break;
-                    case 6: it.background = "pink";          break;
-                    case 7: it.background = "darkBlue";      break;
-                    case 8: it.background = "purple";        break;
-                    case 9: it.background = "deepBlue";      break;
-                    case 10: it.background = "lightPurple";  break;
-                    case 11: it.background = "yellow";       break;
+                    case 6: it.background = 'pink';          break;
+                    case 7: it.background = 'darkBlue';      break;
+                    case 8: it.background = 'purple';        break;
+                    case 9: it.background = 'deepBlue';      break;
+                    case 10: it.background = 'lightPurple';  break;
+                    case 11: it.background = 'yellow';       break;
                   }
                   results.push(it);
                 }
@@ -152,7 +152,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
                 loginRequiredAlert = undefined;
               });
           }
-        };
+        }
 
         /**
          * Dialog Controller
@@ -166,7 +166,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
           $scope.save = function() {
             $mdDialog.hide();
           };
-        };
+        }
 
         /**
          * Open New Window
@@ -194,10 +194,10 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
         self.sideNavClass       = sideNavClass;
         self.openWindow         = openWindow;
         self.actions            = [
-                                      {name: "Mention on Twitter", icon: "twitter", direction: "left", windowURL: 'https://twitter.com/intent/tweet?hashtags=SalesforceLightning&original_referer=http%3A%2F%2Fsf1spark.com&ref_src=web&share_with_retweet=never&text=I%27m%20using%20%23SF1Spark%20to%20%23golightningfast%20-%20you%20should%20too!&url=http://sf1spark.com', windowWidth: 600, windowHeight: 250 },
-                                      {name: "Post to Facebook", icon: "facebook", direction: "left", windowURL: 'https://www.facebook.com/sharer/sharer.php?u=sf1spark.com', windowWidth: 600, windowHeight: 250 },
-                                      {name: "Share on Google+", icon: "google_plus", direction: "left", windowURL: 'https://plus.google.com/share?url=sf1spark.com', windowWidth: 600, windowHeight: 450 },
-                                      {name: "Star on GitHub", icon: "github-circle", direction: "left", windowURL: 'https://github.com/scottbcovert/SF1Spark', windowWidth: null, windowHeight: null }
+                                      {name: 'Mention on Twitter', icon: 'twitter', direction: 'left', windowURL: 'https://twitter.com/intent/tweet?hashtags=SalesforceLightning&original_referer=http%3A%2F%2Fsf1spark.com&ref_src=web&share_with_retweet=never&text=I%27m%20using%20%23SF1Spark%20to%20%23golightningfast%20-%20you%20should%20too!&url=http://sf1spark.com', windowWidth: 600, windowHeight: 250 },
+                                      {name: 'Post to Facebook', icon: 'facebook', direction: 'left', windowURL: 'https://www.facebook.com/sharer/sharer.php?u=sf1spark.com', windowWidth: 600, windowHeight: 250 },
+                                      {name: 'Share on Google+', icon: 'google_plus', direction: 'left', windowURL: 'https://plus.google.com/share?url=sf1spark.com', windowWidth: 600, windowHeight: 450 },
+                                      {name: 'Star on GitHub', icon: 'github-circle', direction: 'left', windowURL: 'https://github.com/scottbcovert/SF1Spark', windowWidth: null, windowHeight: null }
                                   ];
         self.sparkDialog        = sparkDialog;
         buildSparkGrid({});

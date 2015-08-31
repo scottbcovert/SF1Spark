@@ -11,7 +11,7 @@ var should = require('should'),
 /**
  * Globals
  */
-var user, spark;
+var user, spark, spark2;
 
 /**
  * Unit tests
@@ -30,7 +30,7 @@ describe('Spark Model Unit Tests:', function() {
 		user.save(function() { 
 			spark = new Spark({
 				name: 'Spark Name',
-				application: 'App'
+				application: 'App',
 				repositoryUrl: 'https://github.com/test/test.git',
 				description: 'Test',
 				owner: user
@@ -123,8 +123,8 @@ describe('Spark Model Unit Tests:', function() {
 				return spark.update({name: 'Spark Name 2'}, function(err,updatedSpark) {
 					should.not.exist(err);
 					updatedSpark.updated.should.notEqual(updatedSpark.created);
+					done();
 				});
-				done();
 			});
 		});
 

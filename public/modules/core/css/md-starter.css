@@ -2,8 +2,8 @@ html, body {
   font-family: 'quicksandbold', sans-serif;
   font-size:14px;
   height:100%;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 /* Toolbar area */
@@ -20,46 +20,46 @@ md-toolbar h1 {
   margin: auto;
 }
 
-  .site-header .md-button {
-    background-color: #03a9f4;
-    color: white;
-  }
+.site-header .md-button {
+  background-color: #03a9f4;
+  color: white;
+}
 
-  .site-header .md-button:hover {
-    color: inherit;
-    background-color: #eee;
-  }
+.site-header .md-button:hover {
+  color: inherit;
+  background-color: #eee;
+}
 
-  .site-header .md-button:hover md-icon {
-    fill: #03a9f4;
-  }
+.site-header .md-button:hover md-icon {
+  fill: #03a9f4;
+}
 
-  .site-header .toolbar-user-image {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    vertical-align: middle;
-  }
+.site-header .toolbar-user-image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  vertical-align: middle;
+}
 
-  md-toolbar-tools .md-button.selected {
-    color: inherit;
-  }
+md-toolbar-tools .md-button.selected {
+  color: inherit;
+}
 
-  md-toolbar-tools .md-button.selected md-icon {
-    fill: inherit;
-  }
+md-toolbar-tools .md-button.selected md-icon {
+  fill: inherit;
+}
 
-  md-toolbar-tools .md-button:hover {
-    color: inherit;
-  }
+md-toolbar-tools .md-button:hover {
+  color: inherit;
+}
 
-  md-toolbar-tools .md-button:hover md-icon {
-    fill: inherit;
-  }
+md-toolbar-tools .md-button:hover md-icon {
+  fill: inherit;
+}
 
-  md-toolbar-tools .md-button {
-    min-width: 66px;
-  }
+md-toolbar-tools .md-button {
+  min-width: 66px;
+}
 
 /* Sidenav area */
 
@@ -90,38 +90,38 @@ md-list md-icon {
   fill: white;
 }
 
-  md-list .md-button.selected {
-    color: inherit;
-  }
+md-list .md-button.selected {
+  color: inherit;
+}
 
-  md-list .md-button.selected md-icon {
-    fill: inherit;
-  }
+md-list .md-button.selected md-icon {
+  fill: inherit;
+}
 
-  md-list .md-button:hover {
-    color: inherit;
-  }
+md-list .md-button:hover {
+  color: inherit;
+}
 
-  md-list .md-button:hover md-icon {
-    fill: inherit;
-  }
+md-list .md-button:hover md-icon {
+  fill: inherit;
+}
 
-  md-sidenav  md-list {
-    padding: 0px 0px 8px 0px;
-  }
+md-sidenav  md-list {
+  padding: 0 0 8px 0;
+}
 
 /* Primary content area */
 
-#content {
+md-content {
   overflow: hidden;
 }
 
-#content  {
+md-content {
   padding-left: 40px;
   padding-right: 40px;
 }
 
-#content .md-button.share {
+md-content .md-button.share {
   background-color: transparent;
   border: none;
   width: 48px;
@@ -132,11 +132,11 @@ md-list md-icon {
   right: 25px;
 }
 
-#content md-icon.avatar {
+md-content md-icon.avatar {
   margin-top: 10px;
 }
 
-#content .md-button.share > md-icon {
+md-content .md-button.share > md-icon {
   fill:black;
   width:36px;
   height:36px;
@@ -148,14 +148,14 @@ md-button.menuBtn > md-icon {
   height:24px;
 }
 
-#content .md-button.share:active > md-icon {
+md-content .md-button.share:active > md-icon {
   background-color: #dadada;
   border-radius: 75%;
   padding:4px;
   transition: all 100ms ease-out 30ms;
 }
 
-#content img {
+md-content img {
   display: block;
   height: auto;
   max-width: 500px;
@@ -212,6 +212,7 @@ a.mfb-component__button--child[data-mfb-label]:after {
 .gridListdemoDynamicTiles md-grid-tile md-icon {
   padding-bottom: 32px; }
 .gridListdemoDynamicTiles md-grid-tile md-grid-tile-footer {
+  background: rgb(0, 0, 0); /* Fallback Color */
   background: rgba(0, 0, 0, 0.68);
   height: 36px; }
 .gridListdemoDynamicTiles md-grid-tile-footer figcaption {
@@ -248,8 +249,6 @@ md-fab-speed-dial.md-fab-bottom-left {
   position: relative;
 }
 
-/* Typography support coming in 0.8.0 */
-
 md-toolbar h1 {
   font-size: 1.250em;
   font-weight: 400;
@@ -257,18 +256,10 @@ md-toolbar h1 {
 
 .avatar {
   position: relative;
-  /*width: 128px;
-  height: 128px;
-  border: 1px solid #ddd;
-  border-radius: 50%;*/
   display: inline-block;
   overflow: hidden;
-  margin: 0px;
+  margin: 0;
   vertical-align: middle;
-  /*zoom:0.70;
-  transform: translateZ(0);
-  -webkit-transform: scale(0.70);
-  -moz-transform:scale(0.70);*/
 }
 
 

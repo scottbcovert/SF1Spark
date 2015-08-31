@@ -83,7 +83,7 @@ exports.delete = function(req, res) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
-			})
+			});
 		} else {
 			res.jsonp(spark);
 		}
