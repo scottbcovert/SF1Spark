@@ -32,7 +32,7 @@ RUN bower install --config.interactive=false --allow-root
 ADD . /home/mean
 
 # currently only works for development
-ENV NODE_ENV production
+ENV NODE_ENV development
 
 # Port 8080 for server
 EXPOSE 8080
