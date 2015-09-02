@@ -23,15 +23,17 @@ If you'd like to run Spark locally follow these steps:
 
 * CD into the project folder
 
-```
-$ ssh-keygen -t rsa -C "SF1Spark"
-```
-* For path choose [project folder]/id_rsa like this: /Users/Scott/myMac/workspace/sf1spark/id_rsa and leave passphrase empty]
-
-* Add to dokku user's authorized_keys file on DO droplet
+* Add SSH key to dokku user's authorized_keys file on DO droplet
 
 ```
-$ cat ./id_rsa.pub | ssh root@sf1spark.com "sudo sshcommand acl-add dokku SF1Spark" 
+$ cat ~/.ssh/id_rsa.pub | ssh root@sf1spark.com "sudo sshcommand acl-add dokku [key name]" 
+```
+
+* Create local.js file in config/env & set ENV var values there
+
+* Set up docker machine
+
+```
 $ docker-machine create -d virtualbox dev [Starts VM]
 $ docker-machine ip dev [Optional to get VM's ip] 
 $ eval "$(docker-machine env dev)" [Connects terminal session to VM]
@@ -39,8 +41,6 @@ $ bower install [Installs dependencies prior to Docker build]
 $ docker-compose up [Start MongoDB container & Build/Start MEAN.js app container]
 ```
 
-* Go to [VM's ip]:3000 in your browser
+* Change etc/hosts file to map 'localhost' to VM's ip; BE SURE TO UNDO THIS LATER
 
-* Create local.js file in config/env & set ENV var values there
-
-* Change etc/hosts file to map localhost to VM's ip; be sure to undo this later
+* Go to localhost:3000 in your browser
