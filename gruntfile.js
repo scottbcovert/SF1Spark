@@ -124,8 +124,14 @@ module.exports = function(grunt) {
 			test: {
 				NODE_ENV: 'test'
 			},
+			dev: {
+				NODE_ENV: 'development'
+			},
 			secure: {
 				NODE_ENV: 'secure'
+			},
+			prod: {
+				NODE_ENV: 'production'
 			}
 		},
 		mochaTest: {
@@ -139,15 +145,6 @@ module.exports = function(grunt) {
 			unit: {
 				configFile: 'karma.conf.js'
 			}
-		},
-		'copy-fonts': {
-		    main:{
-		        expand: true,
-		        flatten: true,
-		        src: ['public/modules/core/fonts/*'],
-		        dest: 'public/dist/',
-		        filter: 'isFile'
-		    }
 		}
 	});
 
@@ -166,8 +163,11 @@ module.exports = function(grunt) {
 		grunt.config.set('applicationCSSFiles', config.assets.css);
 	});
 
-	// Default task(s).
-	grunt.registerTask('default', ['lint', 'concurrent:default']);
+	// Default task(s) - Run the project in development mode.
+	grunt.registerTask('default', ['env:dev', 'lint', 'concurrent:default']);
+
+	// Run the project in production mode.
+	grunt.registerTask('prod', ['build', 'env:prod', 'concurrent:default']);
 
 	// Debug task.
 	grunt.registerTask('debug', ['lint', 'concurrent:debug']);
@@ -179,7 +179,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin', 'copy-fonts']);
+	grunt.registerTask('build', ['env:dev', 'lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);

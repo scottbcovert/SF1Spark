@@ -6,7 +6,7 @@ module.exports = {
 		description: 'Code Playground for Salesforce1 Lightning Components',
 		keywords: 'Salesforce1, Lightning, Playground'
 	},
-	port: process.env.PORT || 3000,
+	port: process.env.PORT || process.env.DOKKU_DOCKERFILE_PORT || 3000,
 	templateEngine: 'swig',
 	sessionSecret: 'MEAN',
 	sessionCollection: 'sessions',
