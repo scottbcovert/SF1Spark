@@ -6,8 +6,9 @@ web:
    - "3000:3000"
    - "35729:35729"
   volumes:
-   - "/Users/Scott/myMac/workspace/sf1spark/public:/home/mean/public"
-   - "/Users/Scott/myMac/workspace/sf1spark/app:/home/mean/app"
+   - "~/.ssh/id_rsa:/home/spark/.ssh/id_rsa"
+   - "./public:/home/spark/mean/public"
+   - "./app:/home/spark/mean/app"
   environment: 
    NODE_ENV: development
   env_file: config/env/local.js
